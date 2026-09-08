@@ -117,18 +117,20 @@ function MobileDrawer({ open, onClose }) {
           </button>
         </div>
         <div>
-          {mobileLinks.map(({ label, href, color, icon }) => (
-            <a
-              key={label}
-              rel="noreferrer"
-              className={`flex items-center space-x-3 hover:bg-chow-green text-white font-medium text-xl capitalize h-20 pl-10 border-b border-b-white/20 transition ${color}`}
-              href={href}
-              onClick={onClose}
-            >
-              <span className="w-6 flex items-center">{icon}</span>
-              <span className="text-white font-semibold">{label}</span>
-            </a>
-          ))}
+          {mobileLinks.map(({ label, href, color, icon }) => {
+            const cls = `flex items-center space-x-3 hover:bg-chow-green text-white font-medium text-xl capitalize h-20 pl-10 border-b border-b-white/20 transition ${color}`
+            return href.startsWith('http') ? (
+              <a key={label} rel="noreferrer" className={cls} href={href} onClick={onClose}>
+                <span className="w-6 flex items-center">{icon}</span>
+                <span className="text-white font-semibold">{label}</span>
+              </a>
+            ) : (
+              <Link key={label} to={href} className={cls} onClick={onClose}>
+                <span className="w-6 flex items-center">{icon}</span>
+                <span className="text-white font-semibold">{label}</span>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </div>
