@@ -9,8 +9,6 @@ const slides = [
   { title: 'Unpack and enjoy', bg: '#FFEDB3', accent: '#ED5E3B', img: '/illustrations/Pack.svg' },
 ]
 
-const SLIDE_MS = 7000
-
 function ProgressRing({ accent, keyHint }) {
   const r = 24
   const c = Math.PI * 2 * r
@@ -62,72 +60,66 @@ function AppCarousel() {
   }, [])
 
   useEffect(() => {
-    timer.current = setTimeout(() => go(active + 1), SLIDE_MS)
+    timer.current = setTimeout(() => go(active + 1), 7000)
     return () => clearTimeout(timer.current)
   }, [active, go])
 
   const slide = slides[active]
 
   return (
-    <div className="mt-24 relative">
+    <section className="relative overflow-hidden">
       <div className="container">
-        <div className="relative h-[450px] md:h-[800px]">
-          {slides.map((s, i) => (
-            <div
-              key={s.title}
-              className={`absolute inset-0 rounded-2xl py-6 px-4 md:p-8 relative flex flex-col transition-opacity duration-700 ${
-                i === active ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-              }`}
-              style={{ backgroundColor: s.bg }}
-              aria-hidden={i !== active}
-            >
-              <p className="text-[32px] md:text-7xl tracking-[-2px] text-center font-bold mt-5 z-10">{s.title}</p>
-              <div className="absolute w-full h-full left-0 top-0 lg:top-10 flex flex-col items-center justify-center">
-                <img src={s.img} alt={s.title} className="w-[50%] h-[50%] lg:h-[70%] lg:w-[85%] object-contain" />
-              </div>
-              <div className="mt-auto relative">
-                <div className="md:flex">
-                  <div className="relative flex items-center">
-                    {slides.map((sl, j) => (
-                      <Dot
-                        key={sl.title}
-                        slide={s}
-                        active={j === active}
-                        index={j}
-                        onLast={j === slides.length - 1}
-                        onClick={() => go(j)}
-                      />
-                    ))}
-                  </div>
-                  <div className="hidden md:block md:ml-auto">
-                    <div className="flex items-center">
-                      <button
-                        type="button"
-                        onClick={() => go(active - 1)}
-                        className="relative flex items-center justify-center rounded-full w-14 h-14 mb-2 cursor-pointer transition-transform hover:scale-110"
-                        style={{ backgroundColor: slide.accent, color: slide.bg }}
-                        aria-label="Previous slide"
-                      >
-                        <ChevronLeft size={24} />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => go(active + 1)}
-                        className="relative flex items-center justify-center rounded-full w-14 h-14 mb-2 cursor-pointer transition-transform hover:scale-110"
-                        style={{ backgroundColor: slide.accent, color: slide.bg }}
-                        aria-label="Next slide"
-                      >
-                        <ChevronRight size={24} />
-                      </button>
-                    </div>
+        <div className="fixed-height h-[400px] md:h-[700px]">
+          <div
+            className="relative h-full w-full rounded-2xl py-4 px-4 md:p-8 flex flex-col"
+            style={{ backgroundColor: slide.bg }}
+          >
+            <p className="text-[32px] md:text-7xl tracking-[-2px] text-center font-bold mt-4 z-10">{slide.title}</p>
+            <div className="absolute w-full h-full left-0 top-0 lg:top-10 flex flex-col items-center justify-center">
+              <img src={slide.img} alt={slide.title} className="w-[50%] h-[50%] lg:h-[62%] lg:w-[80%] object-contain" />
+            </div>
+            <div className="mt-auto relative">
+              <div className="md:flex">
+                <div className="relative flex items-center">
+                  {slides.map((sl, j) => (
+                    <Dot
+                      key={sl.title}
+                      slide={sl}
+                      active={j === active}
+                      index={j}
+                      onLast={j === slides.length - 1}
+                      onClick={() => go(j)}
+                    />
+                  ))}
+                </div>
+                <div className="hidden md:block md:ml-auto">
+                  <div className="flex items-center">
+                    <button
+                      type="button"
+                      onClick={() => go(active - 1)}
+                      className="relative flex items-center justify-center rounded-full w-14 h-14 mb-2 cursor-pointer transition-transform hover:scale-110"
+                      style={{ backgroundColor: slide.accent, color: slide.bg }}
+                      aria-label="Previous slide"
+                    >
+                      <ChevronLeft size={24} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => go(active + 1)}
+                      className="relative flex items-center justify-center rounded-full w-14 h-14 mb-2 cursor-pointer transition-transform hover:scale-110"
+                      style={{ backgroundColor: slide.accent, color: slide.bg }}
+                      aria-label="Next slide"
+                    >
+                      <ChevronRight size={24} />
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

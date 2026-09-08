@@ -46,7 +46,7 @@ function NotificationRow({ reverse }) {
 
 function Covered() {
   return (
-    <div className="relative">
+    <section className="relative bg-chow-green overflow-hidden">
       <div className="container">
         <div className="text-white mt-16 lg:grid lg:grid-cols-2 lg:gap-32">
           <div className="flex items-center relative">
@@ -84,7 +84,7 @@ function Covered() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

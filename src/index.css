@@ -9,6 +9,7 @@
   --color-chow-green-60: #6d978c;
   --color-chow-yellow: #ffc501;
   --color-chow-yellow-soft: #ffedb3;
+  --color-chow-yellow-100: #fff9e6;
   --color-pepper: #e80b2e;
   --color-kiwi: #02c27f;
   --color-jollof: #ff884d;
@@ -115,18 +116,6 @@ body {
 
 .animate-marquee {
   animation: marquee 15s linear infinite;
-}
-
-.app-info::before {
-  content: " ";
-  position: absolute;
-  top: 9rem;
-  left: 0;
-  display: block;
-  height: 95%;
-  width: 100%;
-  background-color: #0c513f;
-  z-index: -1;
 }
 
 .bottom-band::before {

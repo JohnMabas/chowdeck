@@ -163,9 +163,6 @@ function Footer() {
           <div className="lg:hidden">
             <SocialStrip />
           </div>
-          <div className="hidden lg:block">
-            <SocialStrip />
-          </div>
         </div>
 
         <div className="lg:flex border-t border-white/20">
@@ -184,7 +181,11 @@ function Footer() {
           </div>
         </div>
 
-        <p className="text-xs text-white/40 text-center pb-7 pt-10 mt-auto">
+        <div className="hidden lg:block">
+          <SocialStrip />
+        </div>
+
+        <p className="text-xs text-white/40 text-center pb-7 pt-2">
           © 2022-2026 Chowdeck Logistics Ltd. All rights reserved.
         </p>
       </div>

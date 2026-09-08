@@ -19,10 +19,8 @@ function App() {
         <Hero />
         <WhatsOnDeck />
         <Network />
-        <div className="app-info relative">
-          <AppCarousel />
-          <Covered />
-        </div>
+        <AppCarousel />
+        <Covered />
         <LiveLocation />
         <Stories />
         <div className="bottom-band relative">
