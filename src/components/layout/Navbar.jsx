@@ -232,7 +232,14 @@ function Navbar() {
                 </NavLink>
               </li>
               <li>
-                <Link to="/vendors" className="py-4 px-6 text-center inline-block font-semibold">Vendors</Link>
+                <NavLink
+                  to="/vendors"
+                  className={({ isActive }) =>
+                    `py-4 px-6 text-center inline-block font-semibold ${isActive ? 'text-chow-yellow' : ''}`
+                  }
+                >
+                  Vendors
+                </NavLink>
               </li>
               <li>
                 <Link to="/riders" className="py-4 px-6 text-center inline-block font-semibold">Riders</Link>
