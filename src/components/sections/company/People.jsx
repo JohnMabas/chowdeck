@@ -125,8 +125,8 @@ function People() {
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
-          <div className="lg:col-span-2 lg:sticky lg:top-[110px] lg:h-[calc(100vh_-_350px)] self-start">
-            <div className="relative h-[300px] sm:h-[380px] lg:h-[calc(100vh_-_430px)] min-h-[320px] rounded-2xl overflow-hidden border-4 border-black bg-chow-green">
+          <div className="lg:col-span-2 lg:sticky lg:top-27.5 lg:h-[calc(100vh-350px)] self-start">
+            <div className="relative h-75 sm:h-95 lg:h-[calc(100vh-430px)] min-h-80 rounded-2xl overflow-hidden border-4 border-black bg-chow-green">
               <img
                 key={active.img}
                 src={active.img}
@@ -134,7 +134,7 @@ function People() {
                 className="w-full h-full object-cover opacity-90"
                 loading="eager"
               />
-              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/70 to-transparent">
+              <div className="absolute inset-x-0 bottom-0 p-6 bg-linear-to-t from-black/70 to-transparent">
                 <p className="text-white font-bold text-xl leading-tight">{active.name}</p>
                 <p className="text-chow-yellow text-sm font-semibold uppercase tracking-[3px] mt-1">
                   {active.dept}
