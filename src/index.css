@@ -131,6 +131,18 @@ body {
   z-index: -1;
 }
 
+.animate-marquee-normal {
+  animation: marquee 65s linear infinite;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes progress-spin {
   from {
     transform: rotate(0deg);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import {
   FaBowlFood,
   FaShop,
@@ -220,7 +220,14 @@ function Navbar() {
           <span className="hidden lg:col-span-3 xl:col-span-1 lg:flex justify-center">
             <ul className="bg-white rounded-full flex items-center px-4 w-fit">
               <li>
-                <Link to="/company" className="py-4 px-6 text-center inline-block font-semibold">Company</Link>
+                <NavLink
+                  to="/company"
+                  className={({ isActive }) =>
+                    `py-4 px-6 text-center inline-block font-semibold ${isActive ? 'text-chow-yellow' : ''}`
+                  }
+                >
+                  Company
+                </NavLink>
               </li>
               <li>
                 <Link to="/vendors" className="py-4 px-6 text-center inline-block font-semibold">Vendors</Link>
