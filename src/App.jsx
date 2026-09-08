@@ -1,6 +1,7 @@
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Hero from './components/sections/Hero'
+import WhatsOnDeck from './components/sections/WhatsOnDeck'
 import Network from './components/sections/Network'
 import AppCarousel from './components/sections/AppCarousel'
 import Covered from './components/sections/Covered'
@@ -16,6 +17,7 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <WhatsOnDeck />
         <Network />
         <div className="app-info relative">
           <AppCarousel />

@@ -14,10 +14,16 @@ const restaurants = [
 ]
 
 const pins = [
-  { className: 'top-[30%] left-[22%]' },
-  { className: 'top-[46%] left-[52%]' },
-  { className: 'top-[60%] left-[36%]' },
-  { className: 'top-[24%] left-[68%]' },
+  { className: 'bottom-[23%] left-[15%]' },
+  { className: 'top-[20%] left-[18%]' },
+  { className: 'top-[40%] right-[45%]' },
+  { className: 'bottom-[25%] right-[15%]' },
+  { className: 'top-[5%] right-[5%]' },
+  { className: 'top-[10%] right-[39%]' },
+  { className: 'top-[45%] right-[80%]' },
+  { className: 'top-[75%] right-[35%]' },
+  { className: 'top-[5%] right-[85%]' },
+  { className: 'top-[35%] right-[10%]' },
 ]
 
 function LivePin({ className }) {
