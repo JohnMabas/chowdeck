@@ -35,6 +35,8 @@ function RotatingPhrase() {
 }
 
 function Hero() {
+  const [address, setAddress] = useState('')
+
   return (
     <section className="relative w-full h-[65vh] md:h-[53vh] lg:h-[53vh] xl:h-[67.7vw] min-h-[520px] overflow-hidden">
       <div className="hero-bg-fade absolute inset-0 z-10" />
@@ -45,23 +47,36 @@ function Hero() {
           <RotatingPhrase />
           <div className="relative w-full max-w-2xl mx-auto">
             <div className="w-full text-left my-8 rounded-full">
-              <div className="relative flex items-center px-3 h-[64px] rounded-full bg-white mx-auto focus-within:border-black focus-within:ring-2 focus-within:ring-black shadow-lg">
+              <form
+                className="relative flex items-center px-3 h-[64px] rounded-full bg-white mx-auto focus-within:ring-2 focus-within:ring-black shadow-lg transition-shadow"
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  window.location.href = '/store'
+                }}
+              >
+                <label htmlFor="delivery-address" className="sr-only">
+                  Enter a delivery address
+                </label>
                 <SearchPin />
                 <input
+                  id="delivery-address"
                   type="text"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                   placeholder="Enter a delivery address"
                   className="flex-1 border-0 h-full bg-transparent outline-none text-gray-800 ml-3 min-w-0"
+                  autoCapitalize="off"
+                  autoCorrect="off"
                 />
                 <span className="shrink-0">
                   <button
-                    type="button"
-                    disabled
-                    className="bg-cucumber rounded-full text-white text-sm lg:px-6 px-2 lg:py-3 py-2 font-medium hover:bg-[#68B99D] transition cursor-not-allowed"
+                    type="submit"
+                    className="bg-cucumber rounded-full text-white text-sm lg:px-6 px-2 lg:py-3 py-2 font-medium hover:bg-[#68B99D] active:scale-95 transition cursor-pointer"
                   >
                     Order now
                   </button>
                 </span>
-              </div>
+              </form>
             </div>
           </div>
         </div>

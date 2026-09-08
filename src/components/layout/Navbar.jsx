@@ -52,7 +52,7 @@ function CountrySelector() {
         <span className="hidden md:inline-block text-sm font-semibold">NG</span>
         <ChevronDownCircle className="hidden md:inline-block text-cucumber" />
       </span>
-      <span className="hidden group-hover:flex flex-col items-end w-full absolute top-[100%] right-0 pt-2 min-w-max animate__animated animate__fadeIn">
+      <span className="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out flex flex-col items-end w-full absolute top-[100%] right-0 pt-2 min-w-max">
         <button className="py-3 px-6 rounded-full bg-white border border-slate-200 mb-2 text-black font-semibold capitalize flex items-center space-x-2 cursor-pointer hover:bg-slate-50">
           <Flag src="/images/GhanaFlag.svg" alt="ghana" />
           <span className="capitalize flex items-center space-x-2"><span>ghana</span></span>
@@ -74,8 +74,8 @@ function ProductsDropdown() {
         <ChevronRotate />
       </a>
       <div className="absolute top-0 pt-14 left-0 w-max">
-        <div className="rounded-2xl transform origin-top transition-all duration-200 ease-out scale-y-0 group-hover:scale-y-100">
-          <div className="hidden group-hover:flex flex-col p-4 space-y-3">
+        <div className="rounded-2xl transform origin-top transition-all duration-200 ease-out opacity-0 invisible group-hover:opacity-100 group-hover:visible scale-y-0 group-hover:scale-y-100">
+          <div className="flex flex-col p-4 space-y-3">
             <a className="py-2 px-5 rounded-full w-fit bg-white border border-slate-200 text-black font-semibold capitalize hover:text-[#8C77EC] hover:border-[#8C77EC] transition-all duration-200 transform hover:scale-105 hover:shadow-md" href="/chowpass">Chowpass</a>
             <a className="py-2 px-5 ml-auto rounded-full w-fit bg-white border border-slate-200 text-black font-semibold capitalize hover:text-relay-main hover:border-relay-main transition-all duration-200 transform hover:scale-105 hover:shadow-md" href="/relay">Relay</a>
             <a className="py-2 px-5 ml-auto rounded-full w-fit bg-white border border-slate-200 text-black font-semibold capitalize hover:text-[#004699] hover:border-[#004699] transition-all duration-200 transform hover:scale-105 hover:shadow-md" href="/ads">Ads</a>
@@ -166,6 +166,8 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
@@ -180,6 +182,14 @@ function Navbar() {
     }
   }, [menuOpen])
 
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
+
   return (
     <>
       <header
@@ -192,14 +202,15 @@ function Navbar() {
             <span className="xl:hidden">
               <Link
                 to="/"
-                className="bg-chow-green inline-flex items-center justify-center rounded-full w-12 h-12"
+                onClick={scrollToTop}
+                className="bg-chow-green inline-flex items-center justify-center rounded-full w-12 h-12 transition-transform hover:scale-105"
                 aria-label="Chowdeck home"
               >
                 <LogoMark />
               </Link>
             </span>
             <span className="hidden xl:flex">
-              <Link to="/" className="bg-chow-green inline-flex items-center justify-center text-white py-3 px-6 rounded-full font-semibold h-[45px]">
+              <Link to="/" onClick={scrollToTop} className="bg-chow-green inline-flex items-center justify-center text-white py-3 px-6 rounded-full font-semibold h-[45px] transition-transform hover:scale-105">
                 <Wordmark className="w-[100px] h-[30px]" />
               </Link>
             </span>

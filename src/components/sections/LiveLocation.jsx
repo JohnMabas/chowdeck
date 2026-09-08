@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { LocationPin } from '../ui/Icons'
 
 const restaurants = [
@@ -14,34 +15,47 @@ const restaurants = [
 ]
 
 const pins = [
-  { className: 'bottom-[23%] left-[15%]' },
-  { className: 'top-[20%] left-[18%]' },
-  { className: 'top-[40%] right-[45%]' },
-  { className: 'bottom-[25%] right-[15%]' },
-  { className: 'top-[5%] right-[5%]' },
-  { className: 'top-[10%] right-[39%]' },
-  { className: 'top-[45%] right-[80%]' },
-  { className: 'top-[75%] right-[35%]' },
-  { className: 'top-[5%] right-[85%]' },
-  { className: 'top-[35%] right-[10%]' },
+  { className: 'bottom-[23%] left-[15%]', restaurant: 0 },
+  { className: 'top-[20%] left-[18%]', restaurant: 1 },
+  { className: 'top-[40%] right-[45%]', restaurant: 2 },
+  { className: 'bottom-[25%] right-[15%]', restaurant: 3 },
+  { className: 'top-[5%] right-[5%]', restaurant: 4 },
+  { className: 'top-[10%] right-[39%]', restaurant: 5 },
+  { className: 'top-[45%] right-[80%]', restaurant: 6 },
+  { className: 'top-[75%] right-[35%]', restaurant: 7 },
+  { className: 'top-[5%] right-[85%]', restaurant: 8 },
+  { className: 'top-[35%] right-[10%]', restaurant: 9 },
 ]
 
-function LivePin({ className }) {
+function LivePin({ className, name, onHover }) {
   return (
-    <button type="button" className={`absolute ${className} group`} aria-label="Restaurant location">
+    <button
+      type="button"
+      className={`absolute ${className} group`}
+      aria-label={name}
+      onMouseEnter={onHover}
+      onFocus={onHover}
+    >
       <span className="relative flex h-10 w-10 items-center justify-center">
         <span className="absolute inline-flex h-full w-full rounded-full bg-kiwi opacity-40 scale-90 animate-ping" />
-        <span className="relative inline-flex rounded-full bg-white p-0.5 shadow-lg transition-transform group-hover:scale-110">
+        <span className="relative inline-flex rounded-full bg-white p-0.5 shadow-lg transition-transform duration-200 group-hover:scale-125">
           <LocationPin size={24} color="#02C27F" />
+        </span>
+        <span className="absolute top-full left-1/2 -translate-x-1/2 mt-2 whitespace-nowrap rounded-md bg-black px-3 py-1.5 text-xs font-semibold text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100 pointer-events-none">
+          {name}
         </span>
       </span>
     </button>
   )
 }
 
-function RestaurantRow({ restaurant }) {
+function RestaurantRow({ restaurant, highlight }) {
   return (
-    <div className="flex items-center py-3 px-2 border-b border-black/10 last:border-b-0 hover:bg-white/50 transition-colors cursor-pointer">
+    <div
+      className={`flex items-center py-3 px-2 border-b border-black/10 last:border-b-0 hover:bg-white/50 transition-colors cursor-pointer ${
+        highlight ? 'bg-chow-yellow-soft/60' : ''
+      }`}
+    >
       <span className="flex-1 min-w-0">
         <span className="block truncate font-bold text-base">{restaurant.name}</span>
         <span className="block truncate text-sm text-gray-500">
@@ -60,6 +74,8 @@ function RestaurantRow({ restaurant }) {
 }
 
 function LiveLocation() {
+  const [hovered, setHovered] = useState(null)
+
   return (
     <div
       className="relative pt-48"
@@ -73,7 +89,12 @@ function LiveLocation() {
               style={{ backgroundImage: 'url(/illustrations/LiveLocationBG.svg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
             >
               {pins.map((pin) => (
-                <LivePin key={pin.className} className={pin.className} />
+                <LivePin
+                  key={pin.className}
+                  className={pin.className}
+                  name={restaurants[pin.restaurant].name}
+                  onHover={() => setHovered(pin.restaurant)}
+                />
               ))}
 
               <div className="relative bg-white mt-auto text-center w-full md:w-fit mx-auto border-4 border-white md:rounded-full md:bg-opacity-60 p-3 backdrop-blur-md md:mb-12">
@@ -94,8 +115,8 @@ function LiveLocation() {
             </span>
             <div className="my-3 px-4 mr-2 max-h-[600px] lg:max-h-[680px] overflow-y-auto">
               <div className="grid">
-                {restaurants.map((restaurant) => (
-                  <RestaurantRow key={restaurant.name} restaurant={restaurant} />
+                {restaurants.map((restaurant, i) => (
+                  <RestaurantRow key={restaurant.name} restaurant={restaurant} highlight={i === hovered} />
                 ))}
               </div>
             </div>

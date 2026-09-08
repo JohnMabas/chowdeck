@@ -27,15 +27,17 @@ function Tip({ tip }) {
   )
 }
 
-function NotificationRow() {
+function NotificationRow({ reverse }) {
   return (
     <div className="flex items-start">
       {notifications.map((src, i) => (
         <div
-          key={src}
-          className={`h-[395px] w-48 md:h-[693px] md:w-[336px] mr-6 rounded-lg overflow-hidden ${i % 2 === 1 ? 'mt-8' : ''}`}
+          key={`${reverse}-${src}`}
+          className={`h-[395px] w-48 md:h-[693px] md:w-[336px] mr-6 rounded-lg overflow-hidden shrink-0 ${
+            (i % 2 === 1) !== reverse ? 'mt-8' : ''
+          }`}
         >
-          <img src={src} alt="" className="w-full h-full object-cover" />
+          <img src={src} alt="" className="w-full h-full object-cover" loading="lazy" />
         </div>
       ))}
     </div>
@@ -55,18 +57,19 @@ function Covered() {
               src="/illustrations/meal.png"
               className="w-40 md:w-[230px] lg:w-[180px] -ml-4 lg:absolute -right-8 -bottom-5"
               alt="asian meal"
+              loading="lazy"
             />
           </div>
           <p className="text-sm md:text-lg lg:text-2xl tracking-normal mt-4">
             What do you need? A quick fix on a busy day? Last-minute dinner backup? Supplies for the week? Download Chowdeck
-            and let’s deliver happiness to your doorstep in minutes.
+            and let's deliver happiness to your doorstep in minutes.
           </p>
         </div>
       </div>
 
-      <div className="flex overflow-hidden will-change-transform mt-20">
+      <div className="flex overflow-hidden will-change-transform mt-20" aria-label="Features marquee">
         <div className="flex whitespace-nowrap animate-marquee">
-          {[...tips, ...tips].map((tip, i) => (
+          {[...tips, ...tips, ...tips].map((tip, i) => (
             <Tip key={i} tip={tip} />
           ))}
         </div>
@@ -76,7 +79,7 @@ function Covered() {
         <div className="flex overflow-hidden will-change-transform pb-16">
           <div className="flex animate-marquee">
             {[0, 1, 2].map((copy) => (
-              <NotificationRow key={copy} />
+              <NotificationRow key={copy} reverse={copy % 2 === 1} />
             ))}
           </div>
         </div>

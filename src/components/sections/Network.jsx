@@ -29,18 +29,18 @@ const cards = [
 
 function NetworkCard({ title, copy, href, image, icon, alt }) {
   return (
-    <div className="border-4 border-black rounded-2xl overflow-hidden">
+    <div className="border-4 border-black rounded-2xl overflow-hidden group transition-transform duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_rgba(0,0,0,1)]">
       <div className="p-6 h-[290px] flex flex-col">
         <span className="mb-4 h-8 flex items-center">{icon}</span>
         <p className="font-bold text-xl mb-5 lg:text-[28px] -tracking-[1px]">{title}</p>
         <p className="mb-5">{copy}</p>
-        <a className="flex items-center sub-title hover:underline mt-auto mb-5 w-fit" href={href}>
+        <a className="flex items-center sub-title hover:underline mt-auto mb-5 w-fit group/link" href={href}>
           see more
-          <ArrowRight className="ml-1" />
+          <ArrowRight className="ml-1 transition-transform group-hover/link:translate-x-1" />
         </a>
       </div>
-      <div className="-mb-2 bg-gray-100">
-        <img src={image} alt={alt} className="w-full object-cover" />
+      <div className="-mb-2 bg-gray-100 overflow-hidden">
+        <img src={image} alt={alt} className="w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
       </div>
     </div>
   )
@@ -53,7 +53,7 @@ function Network() {
         <span className="font-normal">Join our growing network</span>
         <ArrowDown className="ml-1 md:text-6xl" />
       </p>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {cards.map((card) => (
           <NetworkCard key={card.title} {...card} />
         ))}
