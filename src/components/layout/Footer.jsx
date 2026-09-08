@@ -1,5 +1,6 @@
 import { ArrowDown, LinkedInDot } from '../ui/Icons'
 import { FooterStar, Wordmark } from '../ui/Logo'
+import { useState } from 'react'
 
 function SubscribeBar() {
   return (
@@ -136,10 +137,19 @@ const linkColumns = [
 ]
 
 function LinkColumn({ column, index }) {
+  const [open, setOpen] = useState(column.open ?? false)
   return (
-    <div className={`flex items-start lg:block mb-20 lg:mb-0 lg:pl-4 lg:py-16 ${index % 2 !== 0 ? 'lg:border-x lg:border-white/20' : ''}`}>
-      <h3 className="uppercase text-white/40 sub-title w-[40%] pr-5 lg:mb-8 lg:w-full">{column.title}</h3>
-      <ul className="w-[60%] lg:w-full grid gap-6">
+    <div className="flex items-start lg:block mb-20 lg:mb-0 lg:pl-4 lg:py-16 border-b border-white/20 lg:border-b-0 ${index % 2 !== 0 ? 'lg:border-x lg:border-white/20' : ''}">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="w-full flex items-center justify-between lg:cursor-default lg:pointer-events-none text-left"
+        aria-expanded={open}
+      >
+        <h3 className="uppercase text-white/40 sub-title lg:mb-8 lg:w-full">{column.title}</h3>
+        <span className="lg:hidden text-white/40 text-xs pr-2">{open ? '–' : '+'}</span>
+      </button>
+      <ul className={`w-full lg:grid gap-6 ${open ? 'block' : 'hidden lg:grid'}`}>
         {column.links.map(({ label, href }) => (
           <li key={label} className="text-white first-letter:capitalize">
             <a className="hover:underline" href={href}>
