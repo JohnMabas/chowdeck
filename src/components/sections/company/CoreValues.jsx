@@ -11,7 +11,7 @@ const values = [
 
 function CoreValueCard({ value }) {
   return (
-    <span className="min-w-[320px] h-[440px] rounded-2xl bg-gray-200 inline-block">
+    <span className="min-w-[320px] h-110 rounded-2xl bg-gray-200 inline-block">
       <img
         src={value.src}
         alt={value.label}

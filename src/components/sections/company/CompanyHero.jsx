@@ -22,13 +22,13 @@ function CompanyHero() {
             <img
               src="/images/company/web-bike-right.svg"
               alt="delivery bike"
-              className="ml-10 w-[40px] md:w-[130px]"
+              className="ml-10 w-10 md:w-32.5"
               loading="lazy"
             />
             <img
               src="/images/company/trees.svg"
               alt="tree line"
-              className="w-[200px] md:w-[700px] ml-auto"
+              className="w-50 md:w-175 ml-auto"
               loading="lazy"
             />
           </div>
@@ -63,7 +63,7 @@ function FounderStory() {
             <img
               src="/images/company/founder-ceo.png"
               alt="Babafemi Aluko, co-founder and CEO"
-              className="w-full h-[350px] md:w-[450px] md:h-[450px] lg:w-full object-contain mb-6"
+              className="w-full h-87.5 md:w-112.5 md:h-112.5 lg:w-full object-contain mb-6"
               loading="lazy"
             />
             <p className="text-2xl font-medium tracking-normal">Babafemi Aluko</p>
@@ -82,12 +82,12 @@ function FounderStory() {
         </div>
 
         <div className="md:col-span-5 flex flex-col items-center justify-center border-t-4 border-black p-10">
-          <p className="text-sm font-bold uppercase tracking-[0.025em] mb-6">backed by</p>
+          <p className="text-sm font-bold uppercase tracking-wide mb-6">backed by</p>
           <div className="flex flex-wrap justify-center gap-8" style={{ gap: '2rem' }}>
-            <img src="/images/company/novastar.jpg" alt="NOVASTAR Ventures" className="w-[150px] grayscale" loading="lazy" />
-            <img src="/images/company/aaic.jpg" alt="AAIC Investment" className="w-[150px] grayscale" loading="lazy" />
-            <img src="/images/company/yc.png" alt="Y-Combinator" className="w-[150px] grayscale" loading="lazy" />
-            <img src="/images/company/hoaq-img.png" alt="HoaQ" className="w-[80px] grayscale" loading="lazy" />
+            <img src="/images/company/novastar.jpg" alt="NOVASTAR Ventures" className="w-37.5 grayscale" loading="lazy" />
+            <img src="/images/company/aaic.jpg" alt="AAIC Investment" className="w-37.5 grayscale" loading="lazy" />
+            <img src="/images/company/yc.png" alt="Y-Combinator" className="w-37.5 grayscale" loading="lazy" />
+            <img src="/images/company/hoaq-img.png" alt="HoaQ" className="w-20 grayscale" loading="lazy" />
           </div>
         </div>
       </div>
