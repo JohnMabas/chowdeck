@@ -196,7 +196,7 @@ function Navbar() {
     <>
       <header
         className={`fixed w-full top-0 left-0 z-[500] py-6 transition-all duration-300 ${
-          scrolled ? 'bg-white shadow-[0_10px_25px_0_hsla(0,0%,64%,0.322)]' : ''
+          scrolled ? 'shadow-[0_10px_25px_0_hsla(0,0%,64%,0.322)]' : ''
         }`}
       >
         <nav className="container grid grid-cols-2 lg:grid-cols-5 xl:grid-cols-3 items-center h-20">
